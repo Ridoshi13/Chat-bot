@@ -1,4 +1,4 @@
-# Autor: Arthur
+# Autor: Arthur Rodrigues
 # Propósito: Chatbot Ético e Modular usando Groq API (Llama 3)
 # Conceitos abordados: System Prompt, Memória em Lista, Loop de Interação
 
@@ -83,6 +83,10 @@ def iniciar_chat():
 
         # 6. Atualiza a memória com a resposta do bot (Garante o contexto para a próxima rodada)
         memoria_conversa.append({"role": "assistant", "content": resposta_texto})
+
+# Executa o programa se o arquivo for rodado diretamente
+if __name__ == "__main__":
+    iniciar_chat()
 
 # Executa o programa se o arquivo for rodado diretamente
 if __name__ == "__main__":
