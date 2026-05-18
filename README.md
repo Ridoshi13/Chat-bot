@@ -41,10 +41,6 @@ O código está configurado para ler a sua chave de duas maneiras. Escolha uma d
 
 * **Windows (CMD):**  set GROQ_API_KEY=sua_chave_aqui
 
-* **Windows (PowerShell):** $env:GROQ_API_KEY="sua_chave_aqui"
-
-* **Linux/macOS:** export GROQ_API_KEY="sua_chave_aqui"
-
 ## Opção B (Direto no Código): Abra o arquivo chatbot.py com um editor de texto, localize a linha abaixo e substitua o texto padrão pela sua chave:
 
 ````
