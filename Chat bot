@@ -1,0 +1,89 @@
+# Autor: Arthur
+# Propósito: Chatbot Ético e Modular usando Groq API (Llama 3)
+# Conceitos abordados: System Prompt, Memória em Lista, Loop de Interação
+
+import os
+from groq import Groq
+
+# ==========================================
+# BLOCO 1: CONFIGURAÇÃO E AUTENTICAÇÃO
+# ==========================================
+# Boa prática: Buscar a chave de uma variável de ambiente.
+# Caso não exista, usamos um placeholder seguro que o usuário deve preencher.
+CHAVE_API = os.environ.get("GROQ_API_KEY", "COLOQUE_SUA_CHAVE_API_AQUI")
+
+# Inicializa o cliente da Groq
+client = Groq(api_key=CHAVE_API)
+
+# ==========================================
+# BLOCO 2: IDENTIDADE E MEMÓRIA
+# ==========================================
+# O "System Prompt" dita as regras, o tom e a ética do modelo antes de ele falar com o usuário.
+system_prompt = {
+    "role": "system",
+    "content": (
+        "Você é um assistente virtual ético, paciente e focado em ajudar iniciantes em programação. "
+        "Você deve sempre fornecer informações seguras e precisas. "
+        "Se uma solicitação for antiética ou perigosa, recuse educadamente e explique o motivo. "
+        "Mantenha suas respostas claras e concisas."
+    )
+}
+
+# A memória do bot é apenas uma lista de dicionários.
+# Inicializamos a lista contendo as regras do sistema.
+memoria_conversa = [system_prompt]
+
+# ==========================================
+# BLOCO 3: FUNÇÃO DE GERAÇÃO DE RESPOSTA
+# ==========================================
+def gerar_resposta_bot(historico_mensagens):
+    """
+    Envia o histórico de mensagens para a Groq e retorna a resposta do Llama 3.
+    """
+    try:
+        # Chamada à API utilizando o modelo solicitado
+        resposta_api = client.chat.completions.create(
+            messages=historico_mensagens,
+            model="llama-3.3-70b-versatile",
+            temperature=0.5, # Temperatura moderada para respostas lógicas e consistentes
+            max_tokens=1024
+        )
+        # Navega no JSON de resposta para extrair apenas o texto gerado
+        return resposta_api.choices[0].message.content
+
+    except Exception as e:
+        return f"[Erro de Comunicação]: Não foi possível acessar a API. Detalhes: {e}"
+
+# ==========================================
+# BLOCO 4: LOOP PRINCIPAL (O MOTOR DO CHAT)
+# ==========================================
+def iniciar_chat():
+    print("========================================")
+    print("🤖 Chatbot Ético Iniciado (Llama 3 via Groq)")
+    print("Digite 'sair', 'quit' ou 'exit' para encerrar.")
+    print("========================================\n")
+
+    while True:
+        # 1. Captura a entrada do usuário
+        entrada_usuario = input("Você: ")
+
+        # 2. Verifica a condição de parada do loop
+        if entrada_usuario.lower() in ['sair', 'quit', 'exit']:
+            print("Bot: Foi um prazer ajudar em seus estudos. Até a próxima!")
+            break
+
+        # 3. Atualiza a memória com a mensagem do usuário
+        memoria_conversa.append({"role": "user", "content": entrada_usuario})
+
+        # 4. Envia a memória atualizada para a API processar
+        resposta_texto = gerar_resposta_bot(memoria_conversa)
+
+        # 5. Exibe a resposta na tela
+        print(f"\nBot: {resposta_texto}\n")
+
+        # 6. Atualiza a memória com a resposta do bot (Garante o contexto para a próxima rodada)
+        memoria_conversa.append({"role": "assistant", "content": resposta_texto})
+
+# Executa o programa se o arquivo for rodado diretamente
+if __name__ == "__main__":
+    iniciar_chat()
