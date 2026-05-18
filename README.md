@@ -1,6 +1,6 @@
 # 🤖 Chatbot Ético e Modular com Groq API
 
-Este repositório contém um assistente virtual interativo baseado em terminal que utiliza a API da Groq para interagir com o modelo de linguagem Llama 3. O projeto foi estruturado em Python focado em simplicidade, contendo um sistema de instruções iniciais (*System Prompt*) e gerenciamento de histórico para manter o contexto da conversa.
+Este repositório contém um assistente virtual interativo baseado em terminal que utiliza a API da Groq para interagir com o modelo de linguagem Llama 3. O projeto foi estruturado em Python focado em simplicidade, contendo um sistema de instruções iniciais (*System Prompt*) e gerenciamento de histórico para manter o contexto da conversa. Ele gere um conversa com o usuario e se adapta ao seu estilo de conversa
 
 ---
 
@@ -9,6 +9,7 @@ Este repositório contém um assistente virtual interativo baseado em terminal q
 * **System Prompt:** Define as regras de comportamento do bot (tom paciente, foco em iniciantes e recusa de pedidos perigosos).
 * **Memória de Contexto:** Armazena o histórico da conversa em uma lista para que o modelo lembre do que foi dito anteriormente.
 * **Loop de Interação:** Mantém o chat ativo no terminal até que o usuário digite um comando de saída.
+* **Adaptação por Usuario:** O chat se adapta ao usuario, se especializando na pessoa com quem ele conversa
 
 ---
 
