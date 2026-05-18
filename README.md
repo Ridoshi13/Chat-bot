@@ -1,65 +1,72 @@
-# 🤖 Chatbot Ético e Modular com Groq API
+# 🤖 Chatbot com Inteligência Artificial (Llama 3)
 
-Este repositório contém um assistente virtual interativo baseado em terminal que utiliza a API da Groq para interagir com o modelo de linguagem Llama 3. O projeto foi estruturado em Python focado em simplicidade, contendo um sistema de instruções iniciais (*System Prompt*) e gerenciamento de histórico para manter o contexto da conversa. Ele gere um conversa com o usuario e se adapta ao seu estilo de conversa
+Este projeto é um programa simples que cria um chat de conversa no seu computador. Ele usa a tecnologia da Groq (uma plataforma super rápida) e o modelo Llama 3 (uma inteligência artificial parecida com o ChatGPT) para responder suas perguntas direto pelo terminal de comandos. Ele se adapta ao Usuario para aprender sobre ele e realizar conselhos baseados no usuario
 
----
-
-## 🚀 Conceitos do Projeto
-
-* **System Prompt:** Define as regras de comportamento do bot (tom paciente, foco em iniciantes e recusa de pedidos perigosos).
-* **Memória de Contexto:** Armazena o histórico da conversa em uma lista para que o modelo lembre do que foi dito anteriormente.
-* **Loop de Interação:** Mantém o chat ativo no terminal até que o usuário digite um comando de saída.
-* **Adaptação por Usuario:** O chat se adapta ao usuario, se especializando na pessoa com quem ele conversa
+O grande diferencial deste robô é que ele foi programado para ser amigável com iniciantes, ético nas respostas e capaz de lembrar o que você conversou com ele durante a sessão.
 
 ---
 
-## 🛠️ Pré-requisitos
+## 🛠️ O que você precisa antes de começar
 
-Antes de começar, você precisará ter instalado em sua máquina:
-* **Python 3.8** ou superior.
-* Uma conta e uma chave de API gerada na plataforma da [Groq](https://console.groq.com/).
+Para que o código funcione, você precisa ter apenas duas coisas:
+1. **Python instalado:** É a linguagem de programação usada para rodar o projeto. Se não tiver, baixe e instale a versão mais recente pelo site oficial (python.org).
+2. **Uma chave da Groq (API Key):** É como uma senha que permite que o seu código converse com os servidores de inteligência artificial. Você consegue uma criando uma conta gratuita no site [Groq Cloud](https://console.groq.com/).
 
 ---
 
-## 🏁 Como Usar: Passo a Passo
+## 🏁 Passo a Passo para Rodar o Programa
 
-Siga as etapas abaixo para configurar e executar o chatbot no seu computador.
+Siga estas instruções simples para colocar o seu robô para funcionar:
 
-### Passo 1: Baixar o código
-Crie uma pasta no seu computador e salve o código do chatbot em um arquivo com o nome `chatbot.py`.
+### Passo 1: Salvar o arquivo do projeto
+1. Abra o bloco de notas do seu computador.
+2. Copie todo o código em Python do chatbot e cole dentro do bloco de notas.
+3. Salve o arquivo com o nome `chatbot.py` em uma pasta de sua preferência (por exemplo, na Área de Trabalho).
 
-### Passo 2: Instalar a biblioteca da Groq
-Abra o terminal ou prompt de comando na pasta onde o arquivo foi salvo e instale a dependência necessária executando o seguinte comando:
+### Passo 2: Abrir o Terminal na pasta correta
+1. Abra o **Prompt de Comando** (se usar Windows) ou o **Terminal** (se usar Mac ou Linux).
+2. Você precisa navegar até a pasta onde salvou o arquivo. Se salvou na Área de Trabalho do Windows, por exemplo, digite o comando abaixo e aperte Enter:
+   ```bash
+   cd Desktop
+   ```
+### Passo 3: Instalar o conector da Groq
+O Python precisa de um pacote especial para conseguir conversar com a inteligência artificial da Groq. Para instalar esse pacote, digite o comando abaixo no seu terminal e aperte Enter:
 
-```bash
+```
+Bash
 pip install groq
 ```
+Aguarde alguns segundos até aparecer uma mensagem dizendo que a instalação foi concluída com sucesso.
 
-## Passo 3: Configurar a sua Chave de API
-O código está configurado para ler a sua chave de duas maneiras. Escolha uma delas:
+### Passo 4: Colocar a sua chave de acesso no código
+Para o robô funcionar, você precisa colar a chave (senha) que pegou no site da Groq dentro do seu arquivo.
 
-* **Opção A (Variável de Ambiente):** Alimente a chave direto no terminal antes de rodar o script.
+Abra o arquivo chatbot.py no bloco de notas.
 
-* **Windows (CMD):**  set GROQ_API_KEY=sua_chave_aqui
+Procure pela linha número 12, que se parece com isso:
 
-* **Windows (PowerShell):** $env:GROQ_API_KEY="sua_chave_aqui"
-
-* **Linux/macOS:** export GROQ_API_KEY="sua_chave_aqui"
-
-## Opção B (Direto no Código): Abra o arquivo chatbot.py com um editor de texto, localize a linha abaixo e substitua o texto padrão pela sua chave:
-
-````
+```
 Python
-CHAVE_API = os.environ.get("GROQ_API_KEY", "SUA_CHAVE_AQUI_ENTRE_AS_ASPAS")
-````
-Passo 4: Executar o Chatbot
-**Com a biblioteca instalada** e a chave configurada, inicie o programa rodando o comando:
+CHAVE_API = os.environ.get("GROQ_API_KEY", "COLOQUE_SUA_CHAVE_API_AQUI")
+```
+Apague o texto COLOQUE_SUA_CHAVE_API_AQUI e cole a sua chave gerada no site da Groq ali dentro, mantendo as aspas. Vai ficar mais ou menos assim:
 
-````
-Bash
+```
+Python
+CHAVE_API = os.environ.get("GROQ_API_KEY", "gsk_a1B2c3D4e5...")
+```
+Salve e feche o arquivo.
+
+### Passo 5: Iniciar a conversa!
+Agora está tudo pronto. Para abrir o seu chat, digite o comando abaixo no terminal e aperte Enter:
+
+```Bash
 python chatbot.py
-````
-## Passo 5: Interagir e Sair
-Digite suas dúvidas no terminal e pressione Enter para receber a resposta do bot.
+```
+### Pronto! 
 
-Para encerrar o chat a qualquer momento, digite sair, quit ou exit e pressione Enter.
+* O terminal vai mostrar uma mensagem de boas-vindas.
+
+* Para conversar: Digite o que quiser e aperte Enter para ver a resposta do robô.
+
+* Para fechar o programa: Quando cansar de conversar, basta digitar a palavra sair e apertar Enter.
